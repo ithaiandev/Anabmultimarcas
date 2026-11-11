@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ana B Multimarcas | Perfumes, Maquiagem e Cosméticos em Barreirinhas - MA</title>
+  <meta name="description" content="Perfumes, kits, maquiagem, cabelos, corpo e banho e joias com os melhores preços da região. Loja física em Barreirinhas - MA e online, entregamos em Chapadinha, Tutoia, São Luís, Brejo e Parnaíba.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Ana B Multimarcas">
+  <meta property="og:title" content="Ana B Multimarcas | Perfumaria e Cosméticos">
+  <meta property="og:description" content="Perfumes, kits, maquiagem e muito mais com os melhores preços da região. Peça pelo WhatsApp!">
+  <meta property="og:image" content="imagens/logo.jpg">
+  <link rel="icon" type="image/png" href="imagens/logo-frasco.png">
+  <link rel="apple-touch-icon" href="imagens/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <noscript>
+    <div class="sem-js">
+      Para ver os produtos, ative o JavaScript do navegador — ou fale direto com a gente no WhatsApp:
+      <a href="https://wa.me/5598984477458">(98) 98447-7458</a>
+    </div>
+  </noscript>
+
+  <!-- ===================== CABEÇALHO ===================== -->
+  <header class="header">
+    <div class="header-topo">
+      <div class="container header-topo-inner">
+        <button class="btn-icone menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menuBar"><i data-i="menu"></i></button>
+
+        <a href="#" class="logo" aria-label="Ana B Multimarcas - início">
+          <img src="imagens/logo-horizontal.png" alt="Ana B Multimarcas" width="580" height="222">
+        </a>
+
+        <div class="busca-area">
+          <div class="busca">
+            <input type="search" id="busca" placeholder="O que você está procurando?" aria-label="Buscar produtos"
+                   autocomplete="off" role="combobox" aria-expanded="false" aria-controls="sugestoes" aria-autocomplete="list">
+            <button class="busca-btn" id="buscaBtn" aria-label="Buscar"><i data-i="busca"></i></button>
+          </div>
+          <div class="sugestoes" id="sugestoes" role="listbox" aria-label="Sugestões de produtos" hidden></div>
+        </div>
+
+        <div class="header-acoes">
+          <a href="#" class="acao" data-whats>
+            <span class="acao-icone"><i data-i="whatsapp"></i></span>
+            <span class="acao-texto"><small>Atendimento</small><strong>WhatsApp</strong></span>
+          </a>
+          <a href="#" class="acao" id="linkInstagramTopo" target="_blank" rel="noopener">
+            <span class="acao-icone"><i data-i="instagram"></i></span>
+            <span class="acao-texto"><small>Siga a gente</small><strong>Instagram</strong></span>
+          </a>
+          <button class="acao acao-sacola" id="abrirSacola" aria-label="Ver meu pedido">
+            <span class="acao-icone"><i data-i="sacola"></i><span class="sacola-qtd" id="sacolaQtd" hidden>0</span></span>
+            <span class="acao-texto"><small>Meu pedido</small><strong id="sacolaItensTexto">0 itens</strong></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra de menu -->
+    <nav class="menu-bar" id="menuBar" aria-label="Departamentos">
+      <div class="container menu-inner">
+        <div class="departamentos">
+          <button class="departamentos-btn" id="departamentosBtn" aria-expanded="false"><i data-i="menu"></i> Departamentos</button>
+          <div class="departamentos-lista" id="departamentosLista"></div>
+        </div>
+        <div class="menu-links" id="menuLinks"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================== RÉGUA DE VANTAGENS (andando) ===================== -->
+  <div class="regua">
+    <p class="sr-only" id="reguaTexto"></p>
+    <div class="regua-trilho" id="reguaTrilho" aria-hidden="true"></div>
+  </div>
+
+  <main>
+    <!-- ===================== BANNER GRANDE ===================== -->
+    <section class="banner-full" aria-label="Destaques">
+      <div class="banner-slides" id="bannerSlides"></div>
+      <button class="banner-seta seta-esq" id="bannerAnterior" aria-label="Banner anterior"><i data-i="esquerda"></i></button>
+      <button class="banner-seta seta-dir" id="bannerProximo" aria-label="Próximo banner"><i data-i="direita"></i></button>
+      <div class="banner-pontos" id="bannerPontos"></div>
+    </section>
+
+    <div class="container">
+      <!-- ===================== CATEGORIAS ===================== -->
+      <section class="vitrine" aria-label="Categorias">
+        <div class="categorias" id="categorias"></div>
+      </section>
+
+      <!-- ===================== VITRINE: NOVIDADES ===================== -->
+      <section class="vitrine">
+        <h2 class="titulo-secao"><span>Novidades selecionadas para você</span></h2>
+        <div class="carrossel" data-carrossel>
+          <button class="carrossel-seta seta-esq" aria-label="Anterior"><i data-i="esquerda"></i></button>
+          <div class="carrossel-lista" id="novidades"></div>
+          <button class="carrossel-seta seta-dir" aria-label="Próximo"><i data-i="direita"></i></button>
+        </div>
+      </section>
+
+      <!-- ===================== MINI BANNERS ===================== -->
+      <section class="mini-banners" id="miniBanners" aria-label="Destaques por categoria"></section>
+
+      <!-- ===================== VITRINE: RECOMENDA ===================== -->
+      <section class="vitrine">
+        <h2 class="titulo-secao"><span>Ana B recomenda</span></h2>
+        <div class="carrossel" data-carrossel>
+          <button class="carrossel-seta seta-esq" aria-label="Anterior"><i data-i="esquerda"></i></button>
+          <div class="carrossel-lista" id="recomendados"></div>
+          <button class="carrossel-seta seta-dir" aria-label="Próximo"><i data-i="direita"></i></button>
+        </div>
+      </section>
+
+      <!-- ===================== TODOS OS PRODUTOS ===================== -->
+      <section class="vitrine" id="vitrine">
+        <h2 class="titulo-secao"><span id="vitrineTitulo">Todos os produtos</span></h2>
+        <div class="filtros" id="filtros"></div>
+        <div class="grade" id="produtos"></div>
+        <p class="vazio" id="vazio" hidden>Não achou o que procura? <a href="#" data-whats>Chama no WhatsApp</a> que a gente encontra pra você!</p>
+      </section>
+    </div>
+  </main>
+
+  <!-- ===================== INSTAGRAM ===================== -->
+  <section class="news-instagram">
+    <div class="container news-inner">
+      <div class="news-texto">
+        <span class="news-icone"><i data-i="instagram"></i></span>
+        <div>
+          <strong>Siga a Ana B no Instagram</strong>
+          <p>Seja sempre a primeira pessoa a ver nossas novidades e promoções!</p>
+        </div>
+      </div>
+      <a href="#" class="btn btn-branco" id="linkInstagramNews" target="_blank" rel="noopener"></a>
+    </div>
+  </section>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="rodape">
+    <div class="container rodape-colunas">
+      <div class="rodape-col rodape-marca">
+        <img src="imagens/logo-horizontal.png" alt="Ana B Multimarcas" class="rodape-logo" width="580" height="222" loading="lazy">
+        <p>Perfumaria e cosméticos com os melhores preços da região. Loja física e online.</p>
+      </div>
+      <div class="rodape-col">
+        <h2>Departamentos</h2>
+        <div id="rodapeCategorias"></div>
+      </div>
+      <div class="rodape-col">
+        <h2>Fale conosco</h2>
+        <a href="#" class="rodape-tel" data-whats><i data-i="whatsapp"></i> <span id="telefoneRodape"></span></a>
+        <p class="rodape-linha"><i data-i="relogio"></i> <span id="horarioRodape"></span></p>
+        <p class="rodape-linha"><i data-i="local"></i> <span id="enderecoRodape"></span></p>
+        <p class="rodape-linha"><i data-i="caminhao"></i> <span id="entregasRodape"></span></p>
+        <div class="redes">
+          <a href="#" id="linkInstagramRodape" target="_blank" rel="noopener" aria-label="Instagram"><i data-i="instagram"></i></a>
+          <a href="#" data-whats aria-label="WhatsApp"><i data-i="whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="rodape-col">
+        <h2>Pagamento</h2>
+        <div class="pagamentos">
+          <span><i data-i="pix"></i> Pix</span>
+          <span><i data-i="cartao"></i> Cartão</span>
+          <span><i data-i="dinheiro"></i> Dinheiro</span>
+        </div>
+        <p class="rodape-obs">Pagamento combinado direto com a gente pelo WhatsApp ou na loja.</p>
+        <p class="rodape-linha selo"><i data-i="escudo"></i> Produtos originais</p>
+      </div>
+    </div>
+    <div class="rodape-copy">
+      <div class="container">
+        <p>© <span id="ano">2026</span> Ana B Multimarcas · Perfumaria e Cosméticos · Barreirinhas - MA</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão flutuante WhatsApp -->
+  <a href="#" class="whats-flutuante" data-whats aria-label="Falar no WhatsApp"><i data-i="whatsapp"></i></a>
+
+  <!-- Janela "Espiar" produto -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-fundo" data-fechar-modal></div>
+    <div class="modal-caixa" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
+      <button class="modal-fechar" data-fechar-modal aria-label="Fechar"><i data-i="fechar"></i></button>
+      <div class="modal-conteudo" id="modalConteudo"></div>
+    </div>
+  </div>
+
+  <!-- Sacola lateral (o pedido vai para o WhatsApp) -->
+  <div class="sacola-fundo" id="sacolaFundo"></div>
+  <aside class="sacola" id="sacola" role="dialog" aria-modal="true" aria-label="Meu pedido">
+    <div class="sacola-topo">
+      <span><i data-i="sacola"></i> Meu pedido</span>
+      <button class="btn-icone" id="fecharSacola" aria-label="Fechar"><i data-i="fechar"></i></button>
+    </div>
+    <div class="sacola-itens" id="sacolaItens"></div>
+    <div class="sacola-rodape">
+      <button class="sacola-esvaziar" id="esvaziar" hidden>Esvaziar pedido</button>
+      <p class="sacola-info">Nada é pago pelo site. Pagamento e entrega são combinados no WhatsApp.</p>
+      <div class="sacola-total"><span>Total estimado</span><strong id="sacolaTotal">R$ 0,00</strong></div>
+      <label class="sacola-campo">Seu nome
+        <input type="text" id="nomeCliente" placeholder="Como podemos te chamar?" maxlength="60" autocomplete="name">
+      </label>
+      <label class="sacola-campo">Entrega ou retirada?
+        <select id="entrega">
+          <option value="Entrega">Quero receber em casa</option>
+          <option value="Retirada na loja">Vou retirar na loja</option>
+        </select>
+      </label>
+      <label class="sacola-campo" id="campoEndereco">Endereço e cidade
+        <input type="text" id="enderecoCliente" placeholder="Rua, número, bairro e cidade" maxlength="140" autocomplete="street-address">
+      </label>
+      <div class="sacola-botoes">
+        <button class="btn btn-contorno" id="continuar"><i data-i="esquerda"></i> Continuar</button>
+        <button class="btn btn-whats" id="finalizar"><i data-i="whatsapp"></i> Enviar pedido</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="aviso" id="aviso" role="status"></div>
+
+  <script src="js/icones.js"></script>
+  <script src="js/produtos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
