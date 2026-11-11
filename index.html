@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Segurança: só deixa rodar scripts, estilos, fontes e imagens das origens abaixo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Ana B Multimarcas | Perfumes, Maquiagem e Cosméticos em Barreirinhas - MA</title>
   <meta name="description" content="Perfumes, kits, maquiagem, cabelos, corpo e banho e joias com os melhores preços da região. Loja física em Barreirinhas - MA e online, entregamos em Chapadinha, Tutoia, São Luís, Brejo e Parnaíba.">
   <meta name="theme-color" content="#000000">
@@ -40,7 +43,7 @@
         <div class="busca-area">
           <div class="busca">
             <input type="search" id="busca" placeholder="O que você está procurando?" aria-label="Buscar produtos"
-                   autocomplete="off" role="combobox" aria-expanded="false" aria-controls="sugestoes" aria-autocomplete="list">
+                   maxlength="80" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="sugestoes" aria-autocomplete="list">
             <button class="busca-btn" id="buscaBtn" aria-label="Buscar"><i data-i="busca"></i></button>
           </div>
           <div class="sugestoes" id="sugestoes" role="listbox" aria-label="Sugestões de produtos" hidden></div>

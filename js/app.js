@@ -41,6 +41,14 @@ function fotoProduto(p) {
     : FOTO_PADRAO;
 }
 
+// coloca a foto de fundo pelo JavaScript (e não com style="" no HTML),
+// assim a política de segurança (CSP) pode bloquear estilos escritos dentro da página
+function aplicarFundos(raiz) {
+  raiz.querySelectorAll("[data-fundo]").forEach((el) => {
+    el.style.backgroundImage = `url("${encodeURI(el.dataset.fundo)}")`;
+  });
+}
+
 // foto que não carrega (caminho errado, arquivo apagado) vira o desenho padrão
 document.addEventListener("error", (e) => {
   const img = e.target;
@@ -97,7 +105,7 @@ let timerBanner;
 function montarBanners() {
   $("#bannerSlides").innerHTML = BANNERS.map((b, i) => `
     <a href="#vitrine" class="banner-slide ${i === 0 ? "ativo" : ""}" data-cat="${esc(b.categoria || "todos")}"
-       style="background-image:url('${esc(b.imagem)}')">
+       data-fundo="${esc(b.imagem)}">
       <div class="container banner-conteudo">
         <div class="banner-texto">
           <span class="banner-tag">${esc(b.tag)}</span>
@@ -107,6 +115,7 @@ function montarBanners() {
         </div>
       </div>
     </a>`).join("");
+  aplicarFundos($("#bannerSlides"));
   $("#bannerPontos").innerHTML = BANNERS.map((_, i) =>
     `<button class="${i === 0 ? "ativo" : ""}" data-banner="${i}" aria-label="Banner ${i + 1}"${i === 0 ? ' aria-current="true"' : ""}></button>`).join("");
   reiniciarBanner();
@@ -238,13 +247,14 @@ function montarMenu() {
 
 function montarMiniBanners() {
   $("#miniBanners").innerHTML = MINI_BANNERS.map((b) => `
-    <a href="#vitrine" class="mini-banner" data-cat="${esc(b.categoria)}" style="background-image:url('${esc(b.imagem)}')">
+    <a href="#vitrine" class="mini-banner" data-cat="${esc(b.categoria)}" data-fundo="${esc(b.imagem)}">
       <div>
         <strong>${esc(b.titulo)}</strong>
         <span>${esc(b.texto)}</span>
         <em>Confira ${icone("seta")}</em>
       </div>
     </a>`).join("");
+  aplicarFundos($("#miniBanners"));
 }
 
 function montarCategorias() {
@@ -377,7 +387,12 @@ function finalizar() {
   ];
   const link = linkWhats(linhas.join("\n"));
   const janela = window.open(link, "_blank");
-  if (!janela) window.location.href = link; // navegador bloqueou a janela nova
+  if (janela) {
+    // a aba nova não ganha acesso de volta a esta página (proteção contra "tabnabbing")
+    try { janela.opener = null; } catch (e) {}
+  } else {
+    window.location.href = link; // navegador bloqueou a janela nova
+  }
   try {
     localStorage.setItem("anab-nome", nome);
     localStorage.setItem("anab-endereco", endereco);
