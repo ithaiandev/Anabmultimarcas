@@ -135,7 +135,10 @@ ul { list-style: none; }
    ============================================================ */
 .regua { background: var(--cor-clara); overflow: hidden; padding: 11px 0; border-bottom: 1px solid var(--borda); }
 .regua-trilho { --vezes: 1; display: flex; width: max-content; animation: regua-correr calc(30s * var(--vezes)) linear infinite; }
-.regua:hover .regua-trilho { animation-play-state: paused; }
+/* pausa só com mouse de verdade: no celular um toque "prendia" o hover e a faixa parava */
+@media (hover: hover) and (pointer: fine) {
+  .regua:hover .regua-trilho { animation-play-state: paused; }
+}
 .regua-grupo { display: flex; gap: 56px; padding-right: 56px; }
 @keyframes regua-correr { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
@@ -201,7 +204,7 @@ ul { list-style: none; }
 .produto-imagem { position: relative; overflow: hidden; background: var(--cinza-fundo); }
 .produto-foto { display: block; width: 100%; aspect-ratio: 1; }
 .produto-foto img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
-.produto:hover .produto-foto img { transform: scale(1.06); }
+@media (hover: hover) { .produto:hover .produto-foto img { transform: scale(1.06); } }
 .foto-padrao { width: 100%; height: 100%; display: grid; place-items: center; color: var(--rose); background: var(--cor-clara); }
 .foto-padrao .ico { width: 40%; height: 40%; stroke-width: 1.2; }
 .selo-desconto { position: absolute; top: 10px; left: 10px; background: var(--cor-principal); color: #fff; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 4px; z-index: 1; }
@@ -226,14 +229,14 @@ ul { list-style: none; }
 .categoria-foto { width: 96px; height: 96px; border-radius: 50%; padding: 3px; background: var(--gradiente-rose); transition: transform .2s; }
 .categoria-foto img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid #fff; }
 .categoria-foto .foto-padrao { border-radius: 50%; border: 3px solid #fff; }
-.categoria:hover .categoria-foto { transform: translateY(-4px); }
+@media (hover: hover) { .categoria:hover .categoria-foto { transform: translateY(-4px); } }
 .categoria:hover { color: var(--cor-principal); }
 
 /* Mini banners */
 .mini-banners { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding-top: 36px; }
 .mini-banner { position: relative; display: flex; align-items: flex-end; aspect-ratio: 7 / 5; padding: 18px; border-radius: var(--raio); color: #fff; overflow: hidden; background-size: cover; background-position: center; transition: transform .25s; }
 .mini-banner::before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(13,11,11,.78) 0%, rgba(13,11,11,.15) 65%); transition: background .25s; }
-.mini-banner:hover { transform: translateY(-4px); }
+@media (hover: hover) { .mini-banner:hover { transform: translateY(-4px); } }
 .mini-banner div { position: relative; }
 .mini-banner strong { display: block; font-family: var(--fonte-titulo); font-size: 24px; font-weight: 600; line-height: 1.1; }
 .mini-banner span { display: block; font-size: 12.5px; color: #e8dedb; }
@@ -433,6 +436,7 @@ ul { list-style: none; }
   .so-pc { display: none; }
   .btn-pequeno { font-size: 12px; white-space: nowrap; }
   .espiar { opacity: 1; transform: translate(-50%, 0); font-size: 10.5px; padding: 5px 12px; bottom: 8px; }
+  .btn-add { padding: 10px 4px; margin-bottom: -6px; } /* área maior para o dedo */
 
   .categorias { display: flex; overflow-x: auto; gap: 14px; scrollbar-width: none; padding-bottom: 4px; }
   .categorias::-webkit-scrollbar { display: none; }

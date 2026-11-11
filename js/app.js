@@ -141,9 +141,17 @@ function reiniciarBanner() {
 let bannerPausado = false;
 function ativarBanner() {
   const area = $(".banner-full");
-  area.addEventListener("mouseenter", () => { bannerPausado = true; clearInterval(timerBanner); });
-  area.addEventListener("mouseleave", () => { bannerPausado = false; reiniciarBanner(); });
-  area.addEventListener("focusin", () => { bannerPausado = true; clearInterval(timerBanner); });
+  // pausa só com mouse de verdade ou teclado (Tab). No celular, um toque
+  // contava como "mouse em cima" e o banner parava de trocar sozinho.
+  area.addEventListener("pointerenter", (e) => {
+    if (e.pointerType === "mouse") { bannerPausado = true; clearInterval(timerBanner); }
+  });
+  area.addEventListener("pointerleave", (e) => {
+    if (e.pointerType === "mouse") { bannerPausado = false; reiniciarBanner(); }
+  });
+  area.addEventListener("focusin", (e) => {
+    if (e.target.matches(":focus-visible")) { bannerPausado = true; clearInterval(timerBanner); }
+  });
   area.addEventListener("focusout", (e) => {
     if (!area.contains(e.relatedTarget)) { bannerPausado = false; reiniciarBanner(); }
   });
